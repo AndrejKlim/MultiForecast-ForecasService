@@ -1,0 +1,16 @@
+syntax = "proto3";
+option java_multiple_files = true;
+package com.multiforecast.userservice;
+
+message LocationRequest {
+  int64 userId = 1;
+}
+
+message LocationResponse {
+  float lat = 1;
+  float lon = 2;
+}
+
+service LocationService {
+  rpc getLocation(LocationRequest) returns (LocationResponse);
+}
