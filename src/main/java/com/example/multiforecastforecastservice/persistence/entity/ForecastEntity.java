@@ -21,7 +21,7 @@ public class ForecastEntity {
     private Source source;
     private Duration duration;
     private Instant created;
-    private JsonObject forecast; // TODO may be should be converted to JSON or BSON or smth like this
+    private JsonObject forecast;
 
     public ForecastEntity(final Long userId, final Source source, final Duration duration,
                           final Instant created, final JsonObject forecast) {

@@ -1,0 +1,15 @@
+syntax = "proto3";
+option java_multiple_files = true;
+package com.multiforecast.forecastservice;
+
+message ForecastRequest {
+  int64 userId = 1;
+}
+
+message ForecastResponse {
+  string forecast = 1;
+}
+
+service ForecastService {
+  rpc getForecast(ForecastRequest) returns (ForecastResponse);
+}

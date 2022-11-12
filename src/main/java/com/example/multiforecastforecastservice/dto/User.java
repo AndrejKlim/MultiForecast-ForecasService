@@ -8,7 +8,5 @@ import java.util.List;
 @Data
 public class User {
     private Long id;
-    private String timeZone;
     private ForecastLocation forecastLocation;
-    private List<Source> forecastSourceList;
 }

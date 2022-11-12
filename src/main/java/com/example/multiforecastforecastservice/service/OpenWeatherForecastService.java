@@ -2,7 +2,6 @@ package com.example.multiforecastforecastservice.service;
 
 import com.example.multiforecastforecastservice.dto.ForecastLocation;
 import com.example.multiforecastforecastservice.dto.User;
-import com.example.multiforecastforecastservice.dto.openweather.OpenWeatherForecast;
 import com.example.multiforecastforecastservice.enums.Duration;
 import com.example.multiforecastforecastservice.enums.Source;
 import com.example.multiforecastforecastservice.persistence.entity.ForecastEntity;
@@ -13,8 +12,6 @@ import org.bson.json.JsonObject;
 import org.springframework.stereotype.Component;
 
 import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
 import java.util.Optional;
 
 import static com.example.multiforecastforecastservice.enums.Source.OPEN_WEATHER;
@@ -30,20 +27,6 @@ public class OpenWeatherForecastService extends ForecastService{
         super(repo);
         this.apiClient = apiClient;
     }
-
-//    @Override
-//    public WeatherInfo getWeather(final User user) {
-//        return getOpenWeatherForecast(user, CURRENT)
-//                .map(WeatherInfo.class::cast)
-//                .orElse(NO_WEATHER_INFO);
-//    }
-//
-//    @Override
-//    public ForecastInfo getForecast(final User user) {
-//        return getOpenWeatherForecast(user, NEAREST)
-//                .map(ForecastInfo.class::cast)
-//                .orElse(NO_FORECAST_INFO);
-//    }
 
     @Override
     public Source getSource() {
