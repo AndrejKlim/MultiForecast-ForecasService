@@ -18,7 +18,7 @@ public class LocationClient {
             return Optional.empty();
         }
 
-        ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 6566)
+        ManagedChannel channel = ManagedChannelBuilder.forAddress("userService", 6566)
                 .usePlaintext()
                 .build();
 
