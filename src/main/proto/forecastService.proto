@@ -10,6 +10,10 @@ message ForecastResponse {
   string forecast = 1;
 }
 
+message UserNotFoundError {
+  int64 userId = 1;
+}
+
 service ForecastService {
   rpc getForecast(ForecastRequest) returns (ForecastResponse);
 }

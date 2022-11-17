@@ -11,6 +11,10 @@ message LocationResponse {
   float lon = 2;
 }
 
+message UserNotFoundError {
+  int64 userId = 1;
+}
+
 service LocationService {
   rpc getLocation(LocationRequest) returns (LocationResponse);
 }
