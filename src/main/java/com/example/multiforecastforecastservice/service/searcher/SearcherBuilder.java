@@ -44,11 +44,11 @@ public class SearcherBuilder {
                     Map.Entry<String, JsonNode> next = entryIterator.next();
                     searchers.add(buildSearchNode(nested, next.getKey(), next.getValue()));
                 }
-                return new ObjectSearcher(doc, searchers);
+                return new ObjectSearcher( searchers);
             }
             return null;
         } else {
-            return new FieldSearcher(doc, name, jsonSearchNode.asText());
+            return new FieldSearcher(doc, name);
         }
     }
 }
