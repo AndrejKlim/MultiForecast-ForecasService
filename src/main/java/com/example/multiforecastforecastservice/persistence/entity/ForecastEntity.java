@@ -2,7 +2,7 @@ package com.example.multiforecastforecastservice.persistence.entity;
 
 import com.example.multiforecastforecastservice.enums.Duration;
 import com.example.multiforecastforecastservice.enums.Source;
-import org.bson.json.JsonObject;
+import com.mongodb.DBObject;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -21,10 +21,10 @@ public class ForecastEntity {
     private Source source;
     private Duration duration;
     private Instant created;
-    private JsonObject forecast;
+    private DBObject forecast;
 
     public ForecastEntity(final Long userId, final Source source, final Duration duration,
-                          final Instant created, final JsonObject forecast) {
+                          final Instant created, final DBObject forecast) {
         this.userId = userId;
         this.source = source;
         this.duration = duration;
@@ -72,11 +72,11 @@ public class ForecastEntity {
         this.created = created;
     }
 
-    public JsonObject getForecast() {
+    public DBObject getForecast() {
         return forecast;
     }
 
-    public void setForecast(final JsonObject forecast) {
+    public void setForecast(final DBObject forecast) {
         this.forecast = forecast;
     }
 }

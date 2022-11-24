@@ -6,7 +6,7 @@ import com.example.multiforecastforecastservice.persistence.entity.ForecastEntit
 import com.example.multiforecastforecastservice.persistence.repository.ForecastRepository;
 
 import java.time.LocalDateTime;
-import java.time.ZoneOffset;
+import java.time.ZoneId;
 
 public abstract class ForecastService {
 
@@ -19,13 +19,15 @@ public abstract class ForecastService {
     public abstract Source getSource();
 
     protected boolean isExpired(final ForecastEntity forecast, final Duration duration) {
-        long expiredTime = 0;
-        if (duration == Duration.CURRENT) expiredTime = 7200; // 2 hours
-        if (duration == Duration.NEAREST) expiredTime = 28800; // 8 hours
 
-        final var forecastCreatedAt = forecast.getCreated().getEpochSecond();
-        final var now = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC);
+        java.time.Duration forecastActualTimeLimit = switch (duration) {
+            case CURRENT -> java.time.Duration.ofHours(2);
+            case NEAREST -> java.time.Duration.ofHours(8);
+            default -> java.time.Duration.ofHours(12);
+        };
 
-        return now - forecastCreatedAt > expiredTime;
+        LocalDateTime created = LocalDateTime.ofInstant(forecast.getCreated(), ZoneId.systemDefault());
+        return java.time.Duration.between(created, LocalDateTime.now())
+                .compareTo(forecastActualTimeLimit) > 0;
     }
 }

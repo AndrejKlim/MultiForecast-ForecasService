@@ -11,10 +11,45 @@ message LocationResponse {
   float lon = 2;
 }
 
+message LocationSaveRequest {
+  int64 userId = 1;
+  string lat = 2;
+  string lon = 3;
+}
+
 message UserNotFoundError {
   int64 userId = 1;
 }
 
+message Empty {
+
+}
+
+message GetFieldResponse {
+  repeated string fields = 1;
+}
+
+message SaveFieldRequest {
+  int64 userId = 1;
+  repeated string fields = 2;
+}
+
+message UserSearchPathRequest {
+  int64 userId = 1;
+}
+
+message UserSearchPathResponse {
+  string searchPath = 1;
+}
+
+
 service LocationService {
   rpc getLocation(LocationRequest) returns (LocationResponse);
+}
+
+service UserService {
+  rpc saveLocation(LocationSaveRequest) returns (Empty);
+  rpc getFields(Empty) returns (GetFieldResponse);
+  rpc saveFieldPrefs(SaveFieldRequest) returns (Empty);
+  rpc getUserSearchPath(UserSearchPathRequest) returns (UserSearchPathResponse);
 }
